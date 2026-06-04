@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>English Word Quiz</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="app">
+    <header class="top">
+      <div>
+        <p class="eyebrow">Vocabulary Trainer</p>
+        <h1>English Word Quiz</h1>
+        <p class="subtitle">한글 뜻과 예문 빈칸으로 영어 단어를 연습하는 사이트</p>
+      </div>
+      <div class="stat-card">
+        <span>총 단어</span>
+        <strong id="totalWords">600</strong>
+      </div>
+    </header>
+
+    <main>
+      <section id="setupScreen" class="panel">
+        <h2>퀴즈 설정</h2>
+        <p class="muted">원하는 Unit을 골라 풀 수 있어. 예문 모드는 빈칸의 첫 글자를 힌트로 보여주고, 정답 확인 후 Space를 누르면 다음 문제로 넘어가.</p>
+
+        <div class="settings-grid">
+          <label class="setting">
+            <span>퀴즈 모드</span>
+            <select id="modeSelect">
+              <option value="meaning">한글 뜻 보고 영어 단어 맞히기</option>
+              <option value="sentence">예문 빈칸 단어 맞히기</option>
+              <option value="mixed">섞어서 풀기</option>
+            </select>
+          </label>
+
+          <label class="setting">
+            <span>Unit 선택</span>
+            <select id="unitSelect">
+              <option value="all">전체 Unit 1~20</option>
+              <option value="1">Unit 1 (1~30)</option>
+              <option value="2">Unit 2 (31~60)</option>
+              <option value="3">Unit 3 (61~90)</option>
+              <option value="4">Unit 4 (91~120)</option>
+              <option value="5">Unit 5 (121~150)</option>
+              <option value="6">Unit 6 (151~180)</option>
+              <option value="7">Unit 7 (181~210)</option>
+              <option value="8">Unit 8 (211~240)</option>
+              <option value="9">Unit 9 (241~270)</option>
+              <option value="10">Unit 10 (271~300)</option>
+              <option value="11">Unit 11 (301~330)</option>
+              <option value="12">Unit 12 (331~360)</option>
+              <option value="13">Unit 13 (361~390)</option>
+              <option value="14">Unit 14 (391~420)</option>
+              <option value="15">Unit 15 (421~450)</option>
+              <option value="16">Unit 16 (451~480)</option>
+              <option value="17">Unit 17 (481~510)</option>
+              <option value="18">Unit 18 (511~540)</option>
+              <option value="19">Unit 19 (541~570)</option>
+              <option value="20">Unit 20 (571~600)</option>
+            </select>
+          </label>
+
+          <label class="setting">
+            <span>문제 수</span>
+            <select id="countSelect">
+              <option value="10">10문제</option>
+              <option value="20">20문제</option>
+              <option value="30">30문제</option>
+              <option value="50">50문제</option>
+              <option value="100">100문제</option>
+              <option value="all">선택 범위 전체</option>
+            </select>
+          </label>
+
+          <label class="setting">
+            <span>출제 방식</span>
+            <select id="orderSelect">
+              <option value="random">랜덤</option>
+              <option value="order">순서대로</option>
+            </select>
+          </label>
+        </div>
+
+        <button id="startBtn" class="primary-btn">퀴즈 시작</button>
+      </section>
+
+      <section id="quizScreen" class="panel hidden">
+        <div class="quiz-head">
+          <div>
+            <p class="eyebrow" id="modeLabel">Meaning Quiz</p>
+            <h2 id="questionTitle">문제</h2>
+          </div>
+          <div class="progress-box">
+            <span id="progressText">1 / 10</span>
+            <strong id="scoreText">0점</strong>
+          </div>
+        </div>
+
+        <div class="progress-bar">
+          <div id="progressFill"></div>
+        </div>
+
+        <article class="question-card">
+          <div class="tag" id="questionType">뜻 → 영어</div>
+          <p id="questionText" class="question-text"></p>
+          <p id="subHint" class="sub-hint"></p>
+
+          <div class="answer-row">
+            <input id="answerInput" type="text" autocomplete="off" placeholder="정답을 입력하세요" />
+            <button id="checkBtn">확인</button>
+          </div>
+
+          <div id="feedback" class="feedback hidden"></div>
+
+          <div class="button-row">
+            <button id="hintBtn" class="ghost-btn">힌트 보기</button>
+            <button id="nextBtn" class="primary-btn hidden">다음 문제</button>
+          </div>
+        </article>
+      </section>
+
+      <section id="resultScreen" class="panel hidden">
+        <h2>결과</h2>
+        <div class="result-score">
+          <span id="finalScore">0 / 10</span>
+          <p id="finalMessage">수고했어!</p>
+        </div>
+
+        <div class="result-actions">
+          <button id="restartBtn" class="primary-btn">다시 풀기</button>
+          <button id="wrongOnlyBtn" class="ghost-btn">틀린 문제만 다시 풀기</button>
+          <button id="homeBtn" class="ghost-btn">설정으로 돌아가기</button>
+        </div>
+
+        <div id="wrongListWrap" class="wrong-wrap hidden">
+          <h3>오답노트</h3>
+          <div id="wrongList"></div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="vocab-data.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
